@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,32 +32,95 @@ public class gui extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        inputPanel = new javax.swing.JPanel();
+        inputBox = new javax.swing.JTextField();
+        convertBtn = new javax.swing.JButton();
+        infoLbl = new javax.swing.JLabel();
+        outputPanel = new javax.swing.JPanel();
+        yheLbl = new javax.swing.JLabel();
+        bLbl = new javax.swing.JLabel();
+        inLbl = new javax.swing.JLabel();
+        outLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("IP To Binary Converter");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+        inputPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        convertBtn.setText("Convert");
+        convertBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                convertBtnActionPerformed(evt);
+            }
+        });
+
+        infoLbl.setText("Please enter a 12 digit number or a number in the following format: XXX.XXX.XXX.XXX");
+
+        javax.swing.GroupLayout inputPanelLayout = new javax.swing.GroupLayout(inputPanel);
+        inputPanel.setLayout(inputPanelLayout);
+        inputPanelLayout.setHorizontalGroup(
+            inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inputPanelLayout.createSequentialGroup()
+                        .addComponent(inputBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(convertBtn))
+                    .addGroup(inputPanelLayout.createSequentialGroup()
+                        .addComponent(infoLbl)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        inputPanelLayout.setVerticalGroup(
+            inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLbl)
+                .addGap(10, 10, 10)
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(convertBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        outputPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        yheLbl.setText("You have entered:");
+
+        bLbl.setText("Binary:");
+
+        javax.swing.GroupLayout outputPanelLayout = new javax.swing.GroupLayout(outputPanel);
+        outputPanel.setLayout(outputPanelLayout);
+        outputPanelLayout.setHorizontalGroup(
+            outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(outputPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(outputPanelLayout.createSequentialGroup()
+                        .addComponent(yheLbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(inLbl))
+                    .addGroup(outputPanelLayout.createSequentialGroup()
+                        .addComponent(bLbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(outLbl)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        outputPanelLayout.setVerticalGroup(
+            outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(outputPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yheLbl)
+                    .addComponent(inLbl))
+                .addGap(18, 18, 18)
+                .addGroup(outputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bLbl)
+                    .addComponent(outLbl))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -64,22 +130,43 @@ public class gui extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(inputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(outputPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(outputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void convertBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_convertBtnActionPerformed
+    {//GEN-HEADEREND:event_convertBtnActionPerformed
+	String input = inputBox.getText(); //Get user input
+	ArrayList<String> addr = new ArrayList(15); //ArrayList to store and organise user input
+	
+		if (input.length() > 15) //Input longer than 15 digit IPv4 address
+		{
+			System.out.println("Input too long to be IPv4 Address");
+			System.exit(0);
+		}
+		else if (input.length() < 15) //Input shorter than IPv4 E.g. 192.168.1.1
+		{
+			filloutInput(input); //Modify input such as 192.168.1.1 || 192.168.25.3 into 192.168.001.001 || 192.168.025.003
+//			System.out.println(addr);
+		}
+//		else
+//			formatInput(input, addr); //Format input to include .'s
+//		System.out.println(addr);	
+    }//GEN-LAST:event_convertBtnActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -127,7 +214,48 @@ public class gui extends javax.swing.JFrame
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel bLbl;
+    private javax.swing.JButton convertBtn;
+    private javax.swing.JLabel inLbl;
+    private javax.swing.JLabel infoLbl;
+    private javax.swing.JTextField inputBox;
+    private javax.swing.JPanel inputPanel;
+    private javax.swing.JLabel outLbl;
+    private javax.swing.JPanel outputPanel;
+    private javax.swing.JLabel yheLbl;
     // End of variables declaration//GEN-END:variables
+
+	private void formatInput(String input, ArrayList<String> addr) //Format input to include .'s
+	{
+		try
+			{
+				for (int i = 0; i < input.length(); i++)
+				{
+					if (i == 3 || i == 6 || i == 9) //Add .'s to create 000.000.000.000 format
+					{
+						addr.add(".");
+					}
+					String inpS = input.substring(i, i+1);
+					addr.add(inpS);
+				}
+			} catch(NumberFormatException n){System.out.println("Non-numeric value was entered");}
+	}
+
+	private void filloutInput(String input) //Modify input such as 192.168.25.3 into 192.168.025.003
+	{
+		String filledInput = "";
+		for (int i = 0; i < 16; i++)
+		{
+			if (i == 3 || i == 6 || i == 9)
+			{
+				filledInput += ".";
+			}
+			try
+			{
+				filledInput += input.substring(i, i+1);
+			} catch(StringIndexOutOfBoundsException s){System.out.println("End of String Reached");}
+			System.out.println(filledInput);
+		}
+		System.out.println(filledInput);
+	}
 }
