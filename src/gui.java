@@ -160,7 +160,7 @@ public class gui extends javax.swing.JFrame
 		}
 		else if (input.length() < 15) //Input shorter than IPv4 E.g. 192.168.1.1
 		{
-			filloutInput(input); //Modify input such as 192.168.1.1 || 192.168.25.3 into 192.168.001.001 || 192.168.025.003
+			filloutInput(input); //Modify input such as 192.168.25.3 into 192.168.025.003
 //			System.out.println(addr);
 		}
 //		else
